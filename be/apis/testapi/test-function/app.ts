@@ -1,4 +1,5 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
+import { Client } from 'ts-postgres';
 
 /**
  *
@@ -11,11 +12,22 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
  */
 
 export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+    const client = new Client({
+        user: 'postgres',
+        host: 'database-1.czrru5xpxnql.eu-central-1.rds.amazonaws.com',
+        database: '',
+        password: '',
+        port: 5432,
+    });
+
     try {
+        await client.connect();
+        const result = await client.query('SELECT * FROM public.users');
         return {
             statusCode: 200,
             body: JSON.stringify({
-                message: 'hello test function',
+                message: 'users from postgres rds',
+                result: result.rows,
             }),
         };
     } catch (err) {

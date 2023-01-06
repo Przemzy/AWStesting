@@ -1,11 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: >
-  webapi
-
-  Sample SAM Template for webapi
-  
-# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
     Timeout: 3
@@ -43,6 +37,15 @@ Resources:
       CodeUri: test-function/
       Handler: app.lambdaHandler
       Runtime: nodejs18.x
+      Policies: AWSLambdaVPCAccessExecutionRole
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-07f8eb3f8fc43047e
+          - sg-07eda7df2baf25e27
+        SubnetIds:
+          - subnet-0fff1ad5fd944ea0a
+          - subnet-0143700638e9d31ca
+          - subnet-0de372ef7ce9b0c7b
       Architectures:
       - x86_64
       Events:
@@ -54,7 +57,7 @@ Resources:
     Metadata: # Manage esbuild properties
       BuildMethod: esbuild
       BuildProperties:
-        Minify: true
+        Minify: false
         Target: "es2020"
         Sourcemap: true
         EntryPoints:

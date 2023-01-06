@@ -2,9 +2,9 @@ version = 0.1
 [default]
 [default.deploy]
 [default.deploy.parameters]
-stack_name = "test"
+stack_name = "testapi"
 s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-107l6iw2zmyjl"
-s3_prefix = "test"
+s3_prefix = "testapi"
 region = "eu-central-1"
 confirm_changeset = true
 capabilities = "CAPABILITY_IAM"
