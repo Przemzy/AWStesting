@@ -15,8 +15,8 @@ export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGat
     const client = new Client({
         user: 'postgres',
         host: 'database-1.czrru5xpxnql.eu-central-1.rds.amazonaws.com',
-        database: '',
-        password: '',
+        database: 'testdb',
+        password: 'Test12345',
         port: 5432,
     });
 
