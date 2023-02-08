@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: Serverless patterns - Amazon API Gateway REST API with Cognito User Pools Authorizer
+Description: Amazon API Gateway REST API with Cognito User Pools Authorizer
 
 Globals:
   Function:
@@ -9,7 +9,7 @@ Globals:
 
 Parameters:
   CognitoUserPoolArn:
-    Description: ARN of the Cognito User Pool
+    Description: arn:aws:cognito-idp:us-east-2:335004744309:userpool/us-east-2_C2BybC3Ty
     Type: String
 
 Resources:
@@ -41,7 +41,7 @@ Resources:
       RestApiId: !Ref AppApi
       IdentitySource: method.request.header.authorizationToken
       ProviderARNs:
-        - !Ref CognitoUserPoolArn
+        - !Ref arn:aws:cognito-idp:us-east-2:335004744309:userpool/us-east-2_C2BybC3Ty
 
   AppFunction:
     Type: AWS::Serverless::Function
